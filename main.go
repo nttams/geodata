@@ -20,7 +20,7 @@ import (
 	"github.com/uber/h3-go/v4"
 )
 
-const fileNameTemplate = "uberh3_%s_res_%d.csv"
+const fileNameTemplate = "h3_res_%d_%s.csv"
 
 var resolutions = []int{4}
 
@@ -39,7 +39,7 @@ func main() {
 					countryCells[c] = true
 				}
 			}
-			writeCellsToFile(fmt.Sprintf(fileNameTemplate, strings.ToLower(country), res), slices.Collect(maps.Keys(countryCells)))
+			writeCellsToFile(fmt.Sprintf(fileNameTemplate, res, strings.ToLower(country)), slices.Collect(maps.Keys(countryCells)))
 			slog.Info("Done writing cells", "name", country, "res", res, "count", len(countryCells))
 		}
 	}
